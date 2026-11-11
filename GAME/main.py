@@ -1,36 +1,65 @@
-import math
-import random
+# screen = pygame.display.set_mode((800, 600))
+# background = pygame.image.load('background.png')
 
+# Example file showing a basic pygame "game loop"
 import pygame
-from pygame import mixer
-
+from objets.player import Avion
 from 
+# pygame setup
 
+# TAILLE de la fenetre
+#TODO fenetre dynamique
+L_screen = 1280
+H_screen = 800
+# affichage fenetre
+screen = pygame.display.set_mode((L_screen, H_screen))
+# TODO changer les "background" apres chaque niveau
+background = pygame.image.load("GAME/assets/background.png")
+background = pygame.transform.scale(background, (L_screen, H_screen))  # IA
 
-# Intialize the pygame
-pygame.init()
+# gere les fps
+clock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((800, 600))
-background = pygame.image.load('background.png')
-# Game Loop // lancer le jeux
+# variable on/off
 running = True
-while running:
 
-    # RGB = Red, Green, Blue
-    screen.fill((0, 0, 0))
-    # Background Image
-    screen.blit(background, (0, 0))
-    screen.blit(Avion, (0, 0))
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+# Initialiser class Player.Avion
+#TODO Creer une selection d'avion
+playerImg = pygame.image.load("GAME/assets/player.png").convert_alpha()
+playerImg = pygame.transform.scale(playerImg, (150, 150))#IA
+# reprend la dimension d affichage pour afficher player  #?? trouver une meilleur methode
+x = L_screen // 2
+y = int(H_screen * 0.8)
+# TODO adapté a la taille de 'player' afin d éviter les débordements
+limite_droite = int(L_screen) - 30
+joueur = Avion(x, y, -8, 8, 0, limite_droite, playerImg)
 
-        # if keystroke is pressed check whether its right or left
+
+def main(screen, clock, running):
+    pygame.init()
+    while running:
+        # poll for events
+        # pygame.QUIT event means the user clicked X to close your window
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        # afficher fond + player + arme
+        screen.blit(background, (0, 0))
+        joueur.afficher(screen)
+        #arme
+
+        ## ??Générez votre jeu ici
+        # placement player
+        # TODO traiter le conflit des touches ou souris "<-" et "->" 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                playerX_change = -5
+                joueur.dep_gauche()
             if event.key == pygame.K_RIGHT:
-                playerX_change = 5
+                joueur.dep_droite()
+
+            # TODO adapter les tirs
+            """
             if event.key == pygame.K_SPACE:
                 if bullet_state is "ready":
                     bulletSound = mixer.Sound("laser.wav")
@@ -38,60 +67,14 @@ while running:
                     # Get the current x cordinate of the spaceship
                     bulletX = playerX
                     fire_bullet(bulletX, bulletY)
+            """
+        # flip() the display to put your work on screen
+        pygame.display.flip()
+        clock.tick(60)  # limits FPS to 60
 
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                playerX_change = 0
+    pygame.quit()
 
-    # 5 = 5 + -0.1 -> 5 = 5 - 0.1
-    # 5 = 5 + 0.1
 
-    playerX += playerX_change
-    if playerX <= 0:
-        playerX = 0
-    elif playerX >= 736:
-        playerX = 736
-
-    # Enemy Movement
-    for i in range(num_of_enemies):
-
-        # Game Over // quand ennemi arrive en bout de course
-        if enemyY[i] > 440:
-            for j in range(num_of_enemies):
-                enemyY[j] = 2000
-            game_over_text()
-            break
-
-        enemyX[i] += enemyX_change[i]
-        if enemyX[i] <= 0:
-            enemyX_change[i] = 4
-            enemyY[i] += enemyY_change[i]
-        elif enemyX[i] >= 736:
-            enemyX_change[i] = -4
-            enemyY[i] += enemyY_change[i]
-
-        # Collision
-        collision = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
-        if collision:
-            explosionSound = mixer.Sound("explosion.wav")
-            explosionSound.play()
-            bulletY = 480
-            bullet_state = "ready"
-            score_value += 1
-            enemyX[i] = random.randint(0, 736)
-            enemyY[i] = random.randint(50, 150)
-
-        enemy(enemyX[i], enemyY[i], i)
-
-    # Bullet Movement
-    if bulletY <= 0:
-        bulletY = 480
-        bullet_state = "ready"
-
-    if bullet_state is "fire":
-        fire_bullet(bulletX, bulletY)
-        bulletY -= bulletY_change
-
-    player(playerX, playerY)
-    show_score(textX, testY)
-    pygame.display.update()
+if __name__ == "__main__":
+    # ?? le menu devra lancer cette fonction avec un button "jouer"
+    main(screen, clock, running)

@@ -1,7 +1,6 @@
-# Bullet
-
-# Ready - You can't see the bullet on the screen
-# Fire - The bullet is currently moving
+# arme + balle
+#recuperer la position du canon  pour y tirer la balle correctement positionné 
+# #bonus tirer grace a la souris + viser
 
 bulletImg = pygame.image.load('bullet.png')
 bulletX = 0
@@ -9,6 +8,7 @@ bulletY = 480
 bulletX_change = 0
 bulletY_change = 10
 bullet_state = "ready"
+
 
 def fire_bullet(x, y):
     global bullet_state
