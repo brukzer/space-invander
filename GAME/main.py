@@ -4,6 +4,7 @@ import random
 import pygame
 from pygame import mixer
 
+from 
 
 
 # Intialize the pygame
@@ -19,6 +20,7 @@ while running:
     screen.fill((0, 0, 0))
     # Background Image
     screen.blit(background, (0, 0))
+    screen.blit(Avion, (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
