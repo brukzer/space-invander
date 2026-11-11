@@ -9,7 +9,8 @@ from pygame import mixer
 # Intialize the pygame
 pygame.init()
 
-
+screen = pygame.display.set_mode((800, 600))
+background = pygame.image.load('background.png')
 # Game Loop // lancer le jeux
 running = True
 while running:
