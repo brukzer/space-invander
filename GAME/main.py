@@ -1,5 +1,6 @@
 import pygame
 from classes.player import Avion
+from classes.ennemi import Extra
 from end.init import init_game
 
 
@@ -8,7 +9,7 @@ running = True # variable on/off
 
 
 def main(clock, running):
-    screen, background, joueur = init_game() #charge tout les "objets" à afficher
+    screen, background, joueur,ennemi = init_game() #charge tout les "objets" à afficher
     while running:
         # poll for events
         # pygame.QUIT event means the user clicked X to close your window
@@ -19,6 +20,8 @@ def main(clock, running):
 ## ----------- Générez l'affichage ici -----------
         screen.blit(background, (0, 0)) #fond
         joueur.afficher(screen) #player
+        # TODO ajoute la boucle "spawn ennemi" + deplacment + collision
+        ennemi.afficher(screen)
             #arme
             #reste de l'affichage
 ## ----------- Générez l'affichage jusqu'ici -----------

@@ -18,6 +18,9 @@
 =>reorganisé init.py❌ Pas OK
     main.py,init.py
 
+4 affichage ennemi ✅ OK => ajoute la boucle "spawn ennemi" + déplacment + collision❌ Pas OK
+
+
 **
 "=>" signifie "à implémenter"
 **
