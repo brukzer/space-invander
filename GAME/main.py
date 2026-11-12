@@ -1,8 +1,4 @@
 import pygame
-
-from classes.player import Avion
-
-from classes.ennemi import Extra
 from end.init import init_game
 from classes.arme import Weapon
 
@@ -14,7 +10,7 @@ def main(clock, running):
 
     screen, background, joueur, ennemi = init_game() #charge tout les "objets" à afficher
 
-    # création des armes
+    # création des armes #TODO l inclure dans init 
     weapons = Weapon(screen)
 
     while running:
@@ -46,9 +42,7 @@ def main(clock, running):
         if keys[pygame.K_SPACE]:
             weapons.shoot_continuous(joueur.x + 30, joueur.y)
 
-        # Affichage
-        screen.blit(background, (0, 0))
-        joueur.afficher(screen)
+        #?? preciser ce que ca fait
         weapons.update()
 
         pygame.display.flip()

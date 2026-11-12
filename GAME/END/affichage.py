@@ -1,5 +1,7 @@
 # Score
 
+import pygame
+
 score_value = 0
 font = pygame.font.Font('freesansbold.ttf', 32)
 
