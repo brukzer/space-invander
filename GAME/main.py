@@ -1,6 +1,8 @@
 import pygame
+
 from classes.player import Avion
-from end.init import init_game
+from END.init import init_game
+from classes.arme import Weapon
 
 
 clock = pygame.time.Clock() # gere les fps
@@ -9,46 +11,40 @@ running = True # variable on/off
 
 def main(clock, running):
     screen, background, joueur = init_game() #charge tout les "objets" à afficher
+
+    # création des armes
+    weapons = Weapon(screen)
+
     while running:
-        # poll for events
-        # pygame.QUIT event means the user clicked X to close your window
+        # Gestion des evenements
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-                
-## ----------- Générez l'affichage ici -----------
-        screen.blit(background, (0, 0)) #fond
-        joueur.afficher(screen) #player
-            #arme
-            #reste de l'affichage
-## ----------- Générez l'affichage jusqu'ici -----------
 
-## ----------- Générez le jeu ici -----------
-        # déplacement player
-        # TODO traiter le conflit des touches ou/et souris 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                joueur.dep_gauche()
-            if event.key == pygame.K_RIGHT:
-                joueur.dep_droite()
+        # Detection des touches maintenues
+        keys = pygame.key.get_pressed()
 
-            # TODO adapter les tirs
-            """
-            if event.key == pygame.K_SPACE:
-                if bullet_state is "ready":
-                    bulletSound = mixer.Sound("laser.wav")
-                    bulletSound.play()
-                    # Get the current x cordinate of the spaceship
-                    bulletX = playerX
-                    fire_bullet(bulletX, bulletY)
-            """
-## ----------- Générez le jeu jusqu'ici -----------
+        # Deplacement continu
+        if keys[pygame.K_LEFT]:
+            joueur.dep_gauche()
 
-        # flip() the display to put your work on screen
+        if keys[pygame.K_RIGHT]:
+            joueur.dep_droite()
+
+        # Tirs continus
+        if keys[pygame.K_SPACE]:
+            weapons.shoot_continuous(joueur.x + 30, joueur.y)
+
+        # Affichage
+        screen.blit(background, (0, 0))
+        joueur.afficher(screen)
+        weapons.update()
+
         pygame.display.flip()
-        clock.tick(60)  # limits FPS to 60
-        
+        clock.tick(60)
+
     pygame.quit()
+
 if __name__ == "__main__":
     # ?? le menu devra lancer cette fonction avec un button "jouer"
     main(clock, running)
