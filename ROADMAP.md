@@ -8,20 +8,19 @@
 
 
 ## LUKA
-1 screen + ecran ✅ OK=> taille dynamique ❌ Pas OK
+1 screen + ecran ✅ OK=> taille dynamique ❌ Pas OK , ameliorer background ❌ Pas OK
     main.py
+
 2 affichage perso + deplacement✅ OK => ...❌ Pas OK
     main.py, perso.py
-3 allègement du main dans initialisation
 
+3 allègement du main dans initialisation + reorganisation ✅ OK
+=>reorganisé init.py❌ Pas OK
+    main.py,init.py
 
 **
 "=>" signifie "à implémenter"
 **
-
-
-## commit 
-main screen == ameliorer la gestion background !!
 
 ## TODO 
 1) separer l'affichage du main
