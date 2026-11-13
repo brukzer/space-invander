@@ -1,5 +1,3 @@
-# Score
-
 import pygame
 
 score_value = 0

@@ -2,6 +2,7 @@ import pygame
 from end.init import init_game, init_player, init_ennemy,L_screen, H_screen 
 from classes.arme import Weapon
 from end.physique import collision
+from pygame import mixer
 
 clock = pygame.time.Clock()  # gere les fps
 running = True  # variable on/off
@@ -13,7 +14,8 @@ screen = pygame.display.set_mode((L_screen, H_screen))
 
 
 def main(clock, running, screen):
-
+    pygame.init()
+    explosionSound = mixer.Sound("GAME/assets/explosion.wav")
     background = init_game()  
     joueur = init_player()
     # création des armes
@@ -42,7 +44,7 @@ def main(clock, running, screen):
             ennemis.append(
                 init_ennemy()
             )
-        for e in ennemis:
+        for e in ennemis: 
             e.afficher(screen)
             e.move()
         ## ----------- AFFICHAGE -----------
@@ -60,7 +62,7 @@ def main(clock, running, screen):
         ## ----------- DEPLACEMENT -----------
 
         ## -----------  COLLISION  -----------
-        collision(weapons.bullets,ennemis)          
+        collision(weapons.bullets,ennemis,explosionSound)          
         ## ----------- COLLISION -----------
         
         weapons.update()

@@ -1,16 +1,18 @@
 import pygame
+from pygame import mixer
 
-def collision(bullets,ennemies):
+
+def collision(bullets,ennemies,explosionSound):
     
     for bullet in bullets:
         for ennemi in ennemies:
             if bullet.hitbox.colliderect(ennemi.hitbox):
-                print("Collision !")
-'''
-def isCollision(enemyX, enemyY, bulletX, bulletY):
-    distance = math.sqrt(math.pow(enemyX - bulletX, 2) + (math.pow(enemyY - bulletY, 2)))
-    if distance < 27:
-        return True
-    else:
-        return False
-'''
+                #recuperer la position de la collision
+                collision_xy = bullet.hitbox.clip(ennemi.hitbox) #IA
+                x = collision_xy.centerx
+                y = collision_xy.centery
+                #animations
+                explosionSound.play()
+                
+                bullets.remove(bullet)
+                ennemies.remove(ennemi)

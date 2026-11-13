@@ -3,10 +3,12 @@
 1 compréhension du code
 2 réorganisation en classe (+ adaptation et personnalisation) et structure(fichier; main, objets, physique, affichage, ...)
 objectif, morcifier un max le code afion d optimiser sa prise en main rapide pour le second groupe, l ensemble des objets sera organisé en class et sous class pour realisé facilement des implementations
-le fichier init doit permmetre d initialiser la class parents, les sous class sont init par le main ou la seleciotn #TODO adapte fichir init
+le fichier init doit permmetre d initialiser la class parents, les sous class sont init par le main ou la selection dans le futur menu #TODO adapte fichir init
 3 optimisation selon la matiere du cour  (decorateur, ...)
 4 ajout de fonctionalite ***BONUS***
 
+!!! retrouver les choix "d'architecture" non noté pour le compte rendu !!! 
+!!! faire fausse phasse prépa !!!
 
 
 ## LUKA
@@ -45,6 +47,7 @@ le fichier init doit permmetre d initialiser la class parents, les sous class so
 1) separer l'affichage du main
 1) ranger assets
 2) optimiser le code à l'aide de décorateur et autre matiere vue en cours
+3) separer constante et variable 
 
 ## TODO ++
 1) ajouter un barre de vie

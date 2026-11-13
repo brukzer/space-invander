@@ -9,14 +9,14 @@ import random
 L_screen, H_screen = 1280, 800  # TAILLE de la fenetre
 ### variablie limite ###
 limite_gauche = 0
-limite_droite = int(L_screen) - 30  # limite_gauche = 0, implémenté ??
+limite_droite = int(L_screen) - 30  # limite_gauche = 0   
 limite_bas = int(H_screen) - 15
 limite_haut = 0
 
 
 def init_game():
 
-    pygame.init()
+    
     back = pygame.image.load("GAME/assets/background.png")
     background = pygame.transform.scale(back, (L_screen, H_screen))  # IA
 
@@ -24,8 +24,8 @@ def init_game():
 
 
 def init_player():
-
     playerImg = pygame.image.load("GAME/assets/player.png").convert_alpha()
+
     playerImg = pygame.transform.scale(playerImg, (150, 150))  # IA
     joueur_x = L_screen // 2 
     joueur_y = H_screen * 0.8
