@@ -2,6 +2,8 @@
 
 1 compréhension du code
 2 réorganisation en classe (+ adaptation et personnalisation) et structure(fichier; main, objets, physique, affichage, ...)
+objectif, morcifier un max le code afion d optimiser sa prise en main rapide pour le second groupe, l ensemble des objets sera organisé en class et sous class pour realisé facilement des implementations
+le fichier init doit permmetre d initialiser la class parents, les sous class sont init par le main ou la seleciotn #TODO adapte fichir init
 3 optimisation selon la matiere du cour  (decorateur, ...)
 4 ajout de fonctionalite ***BONUS***
 
