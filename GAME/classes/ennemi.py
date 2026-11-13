@@ -12,6 +12,7 @@ class Ennemi:
         self.dh = dh
         self.dv = dv
         
+        
     def move(self):
         #TODO optimiser
         #G / D
@@ -24,12 +25,19 @@ class Ennemi:
         self.enemyY += self.speed_down * self.dv
         if self.enemyY >= self.limite_bas:
             self.dv = 0
+        #hit box  
+        self.hitbox.x = self.enemyX
+        self.hitbox.y = self.enemyY
              
+    def postion_ennemi(self):
+        return self.enemiX, self.enemyY    
+        
 
 class Extra(Ennemi):
     def __init__(self,enemyX,enemyY,limite_gauche,limite_droite,limite_bas,enemyImg,dh,dv):
         super().__init__(enemyX,enemyY,5,1,limite_gauche,limite_droite,limite_bas,dh,dv)
         self.enemyImg = enemyImg
+        self.hitbox = self.enemyImg.get_rect(topleft=(self.enemyX, self.enemyY))
         
     def afficher(self, screen):
         screen.blit(self.enemyImg,(self.enemyX, self.enemyY))

@@ -1,6 +1,6 @@
 # arme + balle
-#recuperer la position du canon  pour y tirer la balle correctement positionné 
-# #bonus tirer grace a la souris + viser
+# recuperer la position du canon  pour y tirer la balle correctement positionné 
+# bonus tirer grace a la souris + viser
 
 
 import pygame
@@ -13,18 +13,20 @@ class Bullet:
         self.x = 0
         self.y = 0
         self.speed = 10 # !! négatif car on remonte la page
-        self.state = "ready"
-
+        self.state = "ready" # TRUE / FALSE
+        self.hitbox = self.image.get_rect(topleft=(self.x, self.y))
+        
     def fire(self, x, y):
         if self.state == "ready":
             self.x = x
+            self.hitbox.x = self.x
             self.y = y
             self.state = "fire"
 
     def update(self):
         if self.state == "fire":
             self.y -= self.speed
-
+            self.hitbox.y = self.y
             if self.y < 0:
                 self.state = "ready"
             else:

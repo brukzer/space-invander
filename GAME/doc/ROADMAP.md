@@ -32,7 +32,8 @@
 - gerer la taille d un image avec pygame
 - integrer proprment la vitesse d un joueur selon le vaisseau choisis (vx)
 - petit beug 
-    - enemyX = random.randrange(0, L_screen, 5) ,enemyY = int(H_screen * 0.1) plutot queenemyX, enemyY = random.randrange(0, L_screen, 5),int(H_screen * 0.1)
+    - enemyX = random.randrange(0, L_screen, 5) ,enemyY = int(H_screen * 0.1) plutot que enemyX, enemyY = random.randrange(0, L_screen, 5),int(H_screen * 0.1)
+    - comment recuperer la liste bullets de la classe weapon dans le main => utiliser l instance pas la class
 
 ## ROMEO
 

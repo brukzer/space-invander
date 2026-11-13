@@ -1,6 +1,7 @@
 import pygame
 from end.init import init_game, init_player, init_ennemy,L_screen, H_screen 
 from classes.arme import Weapon
+from end.physique import collision
 
 clock = pygame.time.Clock()  # gere les fps
 running = True  # variable on/off
@@ -18,19 +19,20 @@ def main(clock, running, screen):
     # création des armes
     weapons = Weapon(screen)
     spawn_timer = 0
+    # TODO intergrer dans ennemi manager
     ennemis = []
     ennemis.append(init_ennemy())
 
     while running:
-        ## TIME ##
-        spawn_timer += clock.get_time()
-
-        # Gestion des evenements
-        for event in pygame.event.get():
+        
+        ## ----------- PYGAME -----------
+        spawn_timer += clock.get_time() # timer
+        for event in pygame.event.get(): # Gestion des evenements
             if event.type == pygame.QUIT:
                 running = False
-
-        ## ----------- Générez l'affichage ici -----------
+        ## ----------- PYGAME -----------
+        
+        ## ----------- AFFICHAGE -----------
         screen.blit(background, (0, 0))  # fond
         ### JOUEUR ###
         joueur.afficher(screen)  # player
@@ -43,13 +45,10 @@ def main(clock, running, screen):
         for e in ennemis:
             e.afficher(screen)
             e.move()
-
-            # reste de l'affichage
-        ## ----------- Générez l'affichage jusqu'ici -----------
-
-        # Detection des touches maintenues
-        keys = pygame.key.get_pressed()
-        ### JOUEUR ###
+        ## ----------- AFFICHAGE -----------
+        
+        ## ----------- DEPLACEMENT -----------
+        keys = pygame.key.get_pressed() # Detection des touches maintenues
         # Deplacement continu
         if keys[pygame.K_LEFT]:
             joueur.move(-1)
@@ -58,9 +57,12 @@ def main(clock, running, screen):
         # Tirs continus
         if keys[pygame.K_SPACE]:
             weapons.shoot_continuous(joueur.x + 30, joueur.y)
+        ## ----------- DEPLACEMENT -----------
 
-        ### ennemi ###
-
+        ## -----------  COLLISION  -----------
+        collision(weapons.bullets,ennemis)          
+        ## ----------- COLLISION -----------
+        
         weapons.update()
         pygame.display.flip()
         clock.tick(60)
