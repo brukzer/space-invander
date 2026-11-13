@@ -1,33 +1,36 @@
 
 
-"""
-for i in range(num_of_enemies):
-    enemyImg.append(pygame.image.load('enemy.png'))
-    enemyX.append(random.randint(0, 736))
-    enemyY.append(random.randint(50, 150))
-    enemyX_change.append(4)
-    enemyY_change.append(40)
-"""
-
 class Ennemi:
-    def __init__(self,enemyX,enemyY,enemyGVX,enemyDVX,enemyVY,):
+    def __init__(self,enemyX,enemyY,speed,speed_down,limite_gauche,limite_droite,limite_bas,dh,dv):
         self.enemyX = enemyX
         self.enemyY = enemyY
-        self.enemyGVX = enemyGVX
-        self.enemyDVX = enemyDVX
-        self.enemyVY = enemyVY
+        self.speed = speed
+        self.speed_down = speed_down
+        self.limite_gauche = limite_gauche
+        self.limite_droite = limite_droite
+        self.limite_bas = limite_bas
+        self.dh = dh
+        self.dv = dv
         
-    def apparaitre(self):
-        pass
-    def deplacement(self):
-        pass
-    def touche_le_fond(self):
-        pass
+    def move(self):
+        #TODO optimiser
+        #G / D
+        self.enemyX += self.speed * self.dh
+        if self.enemyX >= self.limite_droite:
+            self.dh = -1
+        if self.enemyX <= self.limite_gauche:
+            self.dh = 1
+        #B / H
+        self.enemyY += self.speed_down * self.dv
+        if self.enemyY >= self.limite_bas:
+            self.dv = 0
+             
 
 class Extra(Ennemi):
-    def __init__(self,enemyX,enemyY,enemyGVX,enemyDVX,enemyVY,enemyImg):
-        super().__init__(enemyX,enemyY,enemyGVX,enemyDVX,enemyVY)
+    def __init__(self,enemyX,enemyY,limite_gauche,limite_droite,limite_bas,enemyImg,dh,dv):
+        super().__init__(enemyX,enemyY,5,1,limite_gauche,limite_droite,limite_bas,dh,dv)
         self.enemyImg = enemyImg
         
     def afficher(self, screen):
         screen.blit(self.enemyImg,(self.enemyX, self.enemyY))
+        

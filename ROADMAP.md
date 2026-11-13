@@ -8,22 +8,35 @@
 
 
 ## LUKA
-1 screen + ecran ✅ OK=> taille dynamique ❌ Pas OK , ameliorer background ❌ Pas OK
+# commit
+1 screen + ecran ✅ => taille dynamique ❌ , ameliorer background ❌ 
     main.py
 
-2 affichage perso + deplacement✅ OK => ...❌ Pas OK
+2 affichage perso + deplacement✅ => ...❌ 
     main.py, perso.py
 
-3 allègement du main dans initialisation + reorganisation ✅ OK
-=>reorganisé init.py❌ Pas OK
+3 allègement du main dans initialisation + reorganisation ✅  
+=>reorganisé init.py (un fonction = une initialisatione ???) ❌ 
     main.py,init.py
 
-4 affichage ennemi ✅ OK => ajoute la boucle "spawn ennemi" + déplacment + collision❌ Pas OK
+4 affichage ennemi ✅ => ajoute la boucle "spawn ennemi" + déplacment ✅ 
 
+5 collision balle / ennemi ❌ 
 
 **
 "=>" signifie "à implémenter"
 **
+
+# utilisation IA
+
+- gerer la taille d un image avec pygame
+- integrer proprment la vitesse d un joueur selon le vaisseau choisis (vx)
+- petit beug 
+    - enemyX = random.randrange(0, L_screen, 5) ,enemyY = int(H_screen * 0.1) plutot queenemyX, enemyY = random.randrange(0, L_screen, 5),int(H_screen * 0.1)
+
+## ROMEO
+
+1 bullet + tire ✅   
 
 ## TODO 
 1) separer l'affichage du main

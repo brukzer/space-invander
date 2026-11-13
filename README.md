@@ -29,7 +29,7 @@ pip install pygame
 # ▶️ Lancement
 
 ```bash
-python main.py
+python main.py  
 ```
 
 ---
@@ -53,21 +53,6 @@ python main.py
 
 # 🎮 Présentation
 
-## Contexte
-
-Ce projet est une réinterprétation du célèbre jeu **Space Invader**. Il a été développé afin de mettre en pratique :
-
-- Python
-- La programmation orientée objet
-- La gestion d'événements
-- Les collisions
-- L'architecture d'un jeu vidéo
-
-## Objectif
-
-Le joueur contrôle un vaisseau spatial capable de se déplacer et de tirer sur des vagues d'ennemis avant qu'ils n'atteignent sa position.
-
----
 
 # ✨ Fonctionnalités
 
@@ -92,18 +77,6 @@ Le joueur contrôle un vaisseau spatial capable de se déplacer et de tirer sur 
 
 ---
 
-# 📷 Captures d'écran
-
-## Gameplay
-
-images/gameplay.png
-
-## Ennemis
-
-images/enemies.png
-
----
-
 # 🛠️ Technologies utilisées
 
 ## Langage
@@ -120,6 +93,9 @@ images/enemies.png
 - GitHub
 - VS Code
 
+# IA
+
+- IA 
 ---
 
 
@@ -220,45 +196,12 @@ Responsabilités :
 
 ---
 
-# 📈 Roadmap
-
-## Version 0.1
-
-- [x] Fenêtre de jeu
-- [x] Déplacement joueur
-
-## Version 0.2
-
-- [x] Tir
-
-## Version 0.3
-
-- [x] Ennemis
-
-## Version 0.4
-
-- [ ] Gestion du score
-- [ ] Vagues d'ennemis
-
-## Version 0.5
-
-- [ ] Interface utilisateur
-
-## Version 1.0
-
-- [ ] Jeu complet
 
 ---
 
 # 🔮 Améliorations futures
 
-- Animation des sprites
-- Sons et musiques
-- Difficulté progressive
-- Niveaux
-- Boss
-- Effets visuels
-- Classement des scores
+=> road map
 
 ---
 

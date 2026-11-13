@@ -1,33 +1,50 @@
 import pygame
 from classes.player import Avion
 from classes.ennemi import Extra
+import random
 
-# TODO fenetre dynamique
+
+
+# affichage fenetre
+L_screen, H_screen = 1280, 800  # TAILLE de la fenetre
+### variablie limite ###
+limite_gauche = 0
+limite_droite = int(L_screen) - 30  # limite_gauche = 0, implémenté ??
+limite_bas = int(H_screen) - 15
+limite_haut = 0
 
 
 def init_game():
-    ### initialiser jeux ###
-   
+
     pygame.init()
-    L_screen, H_screen = 1280, 800  # TAILLE de la fenetre
-   ### initialiser fenetre ###
-    screen = pygame.display.set_mode((L_screen, H_screen))  # affichage fenetre
-    # TODO changer les "background" apres chaque niveau
     back = pygame.image.load("GAME/assets/background.png")
     background = pygame.transform.scale(back, (L_screen, H_screen))  # IA
 
-    ### Initialiser class Player.Avion ###
-    # TODO Creer une selection d'avion
+    return background
+
+
+def init_player():
+
     playerImg = pygame.image.load("GAME/assets/player.png").convert_alpha()
     playerImg = pygame.transform.scale(playerImg, (150, 150))  # IA
-    x, y = L_screen // 2, int(H_screen * 0.8)  # reprend la dimension d affichage pour afficher player  #?? trouver une meilleur methode
-    # TODO adapté a la taille de 'player' afin d éviter les débordements
-    limite_droite = int(L_screen) - 30  # limite_gauche = 0, implémenté ??
-    joueur = Avion(x, y, -8, 8, 0, limite_droite, playerImg)  # "classe init"
+    joueur_x = L_screen // 2 
+    joueur_y = H_screen * 0.8
+    direction, vy = None, None
+    joueur = Avion(
+        joueur_x, joueur_y, direction, vy, limite_droite, playerImg
+    )  # "classe init"
 
-    ### initialiser ennemi ###
-    enemyX, enemyY = L_screen // 2, int(H_screen * 0.3)  
+    return joueur
+
+
+def init_ennemy():
+
+    dh, dv = 1, 1
+    enemyX = random.randrange(0, L_screen, 5)
+    enemyY = H_screen * 0.1
     enemyImg = pygame.image.load("GAME/assets/enemy.png")
-    ennemi = Extra(enemyX,enemyY,0,0,0,enemyImg)
-    
-    return screen, background, joueur, ennemi
+    ennemi = Extra(
+        enemyX, enemyY, limite_gauche, limite_droite, limite_bas, enemyImg, dh, dv
+    )
+
+    return ennemi
